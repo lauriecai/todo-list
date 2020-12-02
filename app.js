@@ -31,4 +31,5 @@ function addItem(e) {
     // append item div to todo container
     todoList.appendChild(itemDiv);
     // clear input
+    todoInput.textContent = '';
 }

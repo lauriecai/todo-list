@@ -1,5 +1,19 @@
-*{
+/* basic reset */
+*,
+*::before,
+*::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* custom properties */
+:root{
+    --dark-green: #4A5759;
+    --light-green: #B0C4B1;
+    --tan: #DEDBD2;
+    --peach: #F7E1D7;
+    --blush: #EDAFB8;
+}
+
+/* global styles */

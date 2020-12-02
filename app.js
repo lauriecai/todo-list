@@ -1,9 +1,10 @@
 // selectors
-const addItemBtn = document.querySelector('.todo-button');
+const addItemBtn = document.querySelector('.todo-btn');
 const todoInput = document.querySelector('.todo-input');
 const todoList = document.querySelector('.todo-list');
 
 // event listeners
+console.log(addItemBtn);
 addItemBtn.addEventListener('click', addItem);
 
 // functions
@@ -15,7 +16,7 @@ function addItem(e) {
     itemDiv.className = 'todo-item';
     // create item text
     const itemText = document.createElement('li');
-    itemText.textContent = 'Start new JavaScript project!';
+    itemText.textContent = todoInput.value;
     itemText.className = 'item-text';
     itemDiv.appendChild(itemText);
     // create check button
@@ -31,5 +32,5 @@ function addItem(e) {
     // append item div to todo container
     todoList.appendChild(itemDiv);
     // clear input
-    todoInput.textContent = '';
+    todoInput.value = '';
 }

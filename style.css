@@ -43,6 +43,7 @@ a{
     width: 4rem;
     right: 0;
     background: none;
+    outline: none;
     border: none;
     color: var(--dark-green);
     display: inline-flex;

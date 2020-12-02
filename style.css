@@ -83,6 +83,7 @@ form{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all 0.3s ease;
 }
 .todo-btn, .complete-item-btn, .delete-item-btn{
     position: absolute;
@@ -123,4 +124,8 @@ form{
 .completed{
     text-decoration: line-through;
     opacity: 0.5;
+}
+.fall{
+    transform: translateY(10rem);
+    opacity: 0;
 }

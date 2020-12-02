@@ -18,10 +18,17 @@
             <i class="fas fa-plus-square"></i>
         </button>
     </form>
+    <div class="select">
+        <select name="todos" id="filter-todo">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+        </select>
+    </div>
     <div class="todo-container">
         <ul class="todo-list">
             <!-- test item -->
-            <!-- <div class="todo-item">
+            <div class="todo-item">
                 <li class="item-text">Start new JavaScript project!</li>
                 <button class="complete-item-btn">
                     <i class="fas fa-check"></i>
@@ -29,7 +36,7 @@
                 <button class="delete-item-btn">
                     <i class="fas fa-trash"></i>
                 </button>
-            </div> -->
+            </div>
         </ul>
     </div>
     <script src="./app.js"></script>

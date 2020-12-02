@@ -36,34 +36,6 @@ a{
     color: inherit;
 }
 
-/* reusable */
-.todo-btn, .complete-item-btn, .delete-item-btn{
-    position: absolute;
-    height: 4rem;
-    width: 4rem;
-    right: 0;
-    background: none;
-    outline: none;
-    border: none;
-    color: var(--dark-green);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-.todo-btn:hover,
-.complete-item-btn:hover,
-.delete-item-btn:hover{
-    cursor: pointer;
-    opacity: .8;
-}
-.fa-plus-square{
-    font-size: 1.8rem;
-}
-.fa-check, .fa-trash{
-    font-size: 1.6rem;
-}
-
 /* header */
 header{
     margin-bottom: 4rem;
@@ -94,7 +66,7 @@ form{
     color: var(--dark-green);
 }
 
-/* todo */
+/* todo list */
 .todo-container, .todo-list{
     width: 100%;
 }
@@ -112,6 +84,34 @@ form{
     align-items: center;
     justify-content: space-between;
 }
+.todo-btn, .complete-item-btn, .delete-item-btn{
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    right: 0;
+    background: none;
+    outline: none;
+    border: none;
+    color: var(--dark-green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+.todo-btn:hover,
+.complete-item-btn:hover,
+.delete-item-btn:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
+.fa-plus-square{
+    font-size: 1.8rem;
+    pointer-events: none;
+}
+.fa-check, .fa-trash{
+    font-size: 1.6rem;
+    pointer-events: none;
+}
 .item-text{
     flex: 1;
     font-size: 1.6rem;
@@ -120,5 +120,7 @@ form{
 .complete-item-btn{
     right: 4rem;
 }
-
-
+.completed{
+    text-decoration: line-through;
+    opacity: 0.5;
+}

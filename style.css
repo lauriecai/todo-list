@@ -16,7 +16,7 @@
     --blush: #EDAFB8;
 }
 
-/* global styles */
+/* global */
 html{
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
@@ -28,12 +28,42 @@ body{
     margin: auto;
     padding-top: 5rem;
 }
+ul{
+    list-style: none;
+}
 a{
     text-decoration: none;
     color: inherit;
 }
 
-/* header styles */
+/* reusable */
+.todo-btn, .complete-item-btn, .delete-item-btn{
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    right: 0;
+    background: none;
+    border: none;
+    color: var(--dark-green);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+.todo-btn:hover,
+.complete-item-btn:hover,
+.delete-item-btn:hover{
+    cursor: pointer;
+    opacity: .8;
+}
+.fa-plus-square{
+    font-size: 1.8rem;
+}
+.fa-check, .fa-trash{
+    font-size: 1.6rem;
+}
+
+/* header */
 header{
     margin-bottom: 4rem;
 }
@@ -42,44 +72,52 @@ header h1{
     color: var(--tan);
 }
 
-/* form style */
-/* --dark-green: #4A5759;
-    --light-green: #B0C4B1;
-    --tan: #DEDBD2;
-    --peach: #F7E1D7;
-    --blush: #EDAFB8; */
+/* form */
 form{
     height: 4rem;
+    margin-bottom: 4rem;
 }
-.todo-input, .todo-button{
+.todo-input{
     height: 4rem;
     border-radius: 6px;
     border: none;
     outline: none;
-    padding: 1rem;
-    font-size: 1.4rem;
-}
-.todo-input{
-    width: 100%;
-    background-color: var(--tan);
     position: relative;
-}
-.todo-button{
-    position: absolute;
-    width: 4rem;
-    right: 0;
-    font-size: 2.5rem;
+    width: 100%;
+    padding: 1rem;
+    padding-left: 1.4rem;
+    background-color: var(--tan);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
     color: var(--dark-green);
-    background-color: inherit;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
 }
-.todo-button:hover{
-    cursor: pointer;
-    opacity: .8;
-    font-size: 2.6rem;
+
+/* todo */
+.todo-container, .todo-list{
+    width: 100%;
+}
+.todo-item{
+    width: 100%;
+    height: 4rem;
+    padding: 1.4rem;
+    border-radius: 6px;
+    background-color: var(--tan);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--dark-green);
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.item-text{
+    flex: 1;
+    font-size: 1.6rem;
+    color: var(--dark-green);
+}
+.complete-item-btn{
+    right: 4rem;
 }
 
 

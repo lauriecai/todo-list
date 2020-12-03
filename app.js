@@ -64,11 +64,11 @@ function filterItems() {
     }
     // filter by active
     if (selectedFilter == 'active') {
-        // 
+        hide('completed');
     }
     // filter by all
     if (selectedFilter == 'all items') {
-        // 
+        display('todo-item');
     }
 }
 
@@ -76,17 +76,18 @@ function display(classname) {
     for (i = 0; i < todoListItems.length; i++) {
         const currentItem = todoListItems[i];
         if (currentItem.classList.contains(classname)) {
-            show(currentItem);
+            currentItem.style.display = 'flex';
         } else {
-            hide(currentItem);
+            currentItem.style.display = 'none';
         }
     }
 }
 
-function hide(item) {
-    item.style.display = 'none';
-}
-
-function show(item) {
-    item.style.display = 'flex';
+function hide(classname) {
+    for (i = 0; i < todoListItems.length; i++) {
+        const currentItem = todoListItems[i];
+        if (currentItem.classList.contains(classname)) {
+            currentItem.style.display = 'none';
+        }
+    }
 }

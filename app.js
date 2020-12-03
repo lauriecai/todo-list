@@ -7,8 +7,8 @@ const filter = document.querySelector('.filter-todo');
 // event listeners
 addItemBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', takeAction);
-// filter.addEventListener('change', filterItems);
 filter.addEventListener('change', filterItems);
+document.addEventListener('DOMContentLoaded', getItems);
 
 // functions
 function addItem(e) {
@@ -22,6 +22,8 @@ function addItem(e) {
     itemText.textContent = todoInput.value;
     itemText.className = 'item-text';
     itemDiv.appendChild(itemText);
+    // add to local storage
+    saveLocalTodos(todoInput.value);
     // create check button
     const completeItemBtn = document.createElement('button');
     completeItemBtn.className = 'complete-item-btn';
@@ -45,6 +47,7 @@ function takeAction(e) {
         const todoItem = click.parentElement;
         // animation
         todoItem.classList.add('fall');
+        removeLocalItem(todoItem);
         todoItem.addEventListener('transitionend', function() {
             todoItem.remove();
         })
@@ -81,38 +84,60 @@ function filterItems(e) {
     })
 }
 
+// local storage
+function saveLocalTodos(item) {
+    // check if any previously stored items
+    let items;
+    if (localStorage.getItem('items') == null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem('items'));
+    }
+    items.push(item);
+    localStorage.setItem('items', JSON.stringify(items));
+}
 
-// function filterItems() {
-//     const selectedFilter = filter.value;
-//     switch (selectedFilter) {
-//         case 'completed':
-//             display('completed');
-//             break;
-//         case 'active':
-//             display('todo-item');
-//             hide('completed');
-//             break;
-//         case 'all items':
-//             display('todo-item');
-//     }
-// }
+function getItems() {
+    // check if any previously stored items
+    let items;
+    if (localStorage.getItem('items') == null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem('items'));
+    }
+    items.forEach(function(item) {
+        // create the item div
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'todo-item';
+        // create item text
+        const itemText = document.createElement('li');
+        itemText.textContent = item;
+        itemText.className = 'item-text';
+        itemDiv.appendChild(itemText);
+        // create check button
+        const completeItemBtn = document.createElement('button');
+        completeItemBtn.className = 'complete-item-btn';
+        completeItemBtn.innerHTML = '<i class="fas fa-check"></i>';
+        itemDiv.appendChild(completeItemBtn);
+        // create delete button
+        const deleteItemBtn = document.createElement('button');
+        deleteItemBtn.className = 'delete-item-btn';
+        deleteItemBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        itemDiv.appendChild(deleteItemBtn);
+        // append item div to todo container
+        todoList.appendChild(itemDiv);
+    })
+}
 
-// function display(classname) {
-//     for (i = 0; i < todoListItems.length; i++) {
-//         const currentItem = todoListItems[i];
-//         if (currentItem.classList.contains(classname)) {
-//             currentItem.style.display = 'flex';
-//         } else {
-//             currentItem.style.display = 'none';
-//         }
-//     }
-// }
-
-// function hide(classname) {
-//     for (i = 0; i < todoListItems.length; i++) {
-//         const currentItem = todoListItems[i];
-//         if (currentItem.classList.contains(classname)) {
-//             currentItem.style.display = 'none';
-//         }
-//     }
-// }
+function removeLocalItem(item) {
+    // check if any previously stored items
+    let items;
+    if (localStorage.getItem('items') == null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem('items'));
+    }
+    const text = item.children[0].textContent;
+    items.splice(items.indexOf(text), 1);
+    localStorage.setItem('items', JSON.stringify(items));
+}

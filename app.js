@@ -2,12 +2,12 @@
 const addItemBtn = document.querySelector('.todo-btn');
 const todoInput = document.querySelector('.todo-input');
 const todoList = document.querySelector('.todo-list');
-const todoListItems = document.getElementsByClassName('todo-item');
 const filter = document.querySelector('.filter-todo');
 
 // event listeners
 addItemBtn.addEventListener('click', addItem);
 todoList.addEventListener('click', takeAction);
+// filter.addEventListener('change', filterItems);
 filter.addEventListener('change', filterItems);
 
 // functions
@@ -56,38 +56,63 @@ function takeAction(e) {
     }
 }
 
-function filterItems() {
-    const selectedFilter = filter.value;
-    // filter by completed
-    if (selectedFilter == 'completed') {
-        display('completed');
-    }
-    // filter by active
-    if (selectedFilter == 'active') {
-        hide('completed');
-    }
-    // filter by all
-    if (selectedFilter == 'all items') {
-        display('todo-item');
-    }
+function filterItems(e) {
+    const items = todoList.childNodes;
+    items.forEach(function(item) {
+        switch (e.target.value) {
+            case 'all items':
+                item.style.display = 'flex';
+                break;
+            case 'completed':
+                if (item.classList.contains('completed')) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+                break;
+            case 'active':
+                if (!item.classList.contains('completed')) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+                break;
+        }
+    })
 }
 
-function display(classname) {
-    for (i = 0; i < todoListItems.length; i++) {
-        const currentItem = todoListItems[i];
-        if (currentItem.classList.contains(classname)) {
-            currentItem.style.display = 'flex';
-        } else {
-            currentItem.style.display = 'none';
-        }
-    }
-}
 
-function hide(classname) {
-    for (i = 0; i < todoListItems.length; i++) {
-        const currentItem = todoListItems[i];
-        if (currentItem.classList.contains(classname)) {
-            currentItem.style.display = 'none';
-        }
-    }
-}
+// function filterItems() {
+//     const selectedFilter = filter.value;
+//     switch (selectedFilter) {
+//         case 'completed':
+//             display('completed');
+//             break;
+//         case 'active':
+//             display('todo-item');
+//             hide('completed');
+//             break;
+//         case 'all items':
+//             display('todo-item');
+//     }
+// }
+
+// function display(classname) {
+//     for (i = 0; i < todoListItems.length; i++) {
+//         const currentItem = todoListItems[i];
+//         if (currentItem.classList.contains(classname)) {
+//             currentItem.style.display = 'flex';
+//         } else {
+//             currentItem.style.display = 'none';
+//         }
+//     }
+// }
+
+// function hide(classname) {
+//     for (i = 0; i < todoListItems.length; i++) {
+//         const currentItem = todoListItems[i];
+//         if (currentItem.classList.contains(classname)) {
+//             currentItem.style.display = 'none';
+//         }
+//     }
+// }
